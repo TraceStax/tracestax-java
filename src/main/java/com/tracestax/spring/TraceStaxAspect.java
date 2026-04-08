@@ -1,6 +1,6 @@
-package io.tracestax.spring;
+package com.tracestax.spring;
 
-import io.tracestax.TraceStaxClient;
+import com.tracestax.TraceStaxClient;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

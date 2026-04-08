@@ -13,7 +13,7 @@ Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>io.tracestax</groupId>
+    <groupId>com.tracestax</groupId>
     <artifactId>tracestax-java</artifactId>
     <version>0.1.0</version>
 </dependency>
@@ -22,7 +22,7 @@ Add the dependency to your `pom.xml`:
 Or with Gradle:
 
 ```groovy
-implementation 'io.tracestax:tracestax-java:0.1.0'
+implementation 'com.tracestax:tracestax-java:0.1.0'
 ```
 
 ## Basic Setup
@@ -30,7 +30,7 @@ implementation 'io.tracestax:tracestax-java:0.1.0'
 Create a single `TraceStaxClient` instance for the lifetime of your application, then call `shutdown()` when the application stops.
 
 ```java
-import io.tracestax.TraceStaxClient;
+import com.tracestax.TraceStaxClient;
 
 TraceStaxClient client = new TraceStaxClient(System.getenv("TRACESTAX_API_KEY"));
 
@@ -45,7 +45,7 @@ All HTTP calls are fire-and-forget: they run on a daemon background thread and n
 Use `TraceStaxClient` directly when you want full control over event timing.
 
 ```java
-import io.tracestax.TraceStaxClient;
+import com.tracestax.TraceStaxClient;
 import java.util.UUID;
 
 TraceStaxClient client = new TraceStaxClient(System.getenv("TRACESTAX_API_KEY"));
@@ -79,8 +79,8 @@ client.snapshot("emails",   7, null, null);
 `TraceStaxJobListener` implements Quartz's `JobListener` interface. Register it once against your scheduler and it will automatically track every job.
 
 ```java
-import io.tracestax.TraceStaxClient;
-import io.tracestax.quartz.TraceStaxJobListener;
+import com.tracestax.TraceStaxClient;
+import com.tracestax.quartz.TraceStaxJobListener;
 import org.quartz.Scheduler;
 
 TraceStaxClient client = new TraceStaxClient(System.getenv("TRACESTAX_API_KEY"));
@@ -117,8 +117,8 @@ scheduler.getListenerManager().addJobListener(
 ### 1. Configure beans
 
 ```java
-import io.tracestax.TraceStaxClient;
-import io.tracestax.spring.TraceStaxAspect;
+import com.tracestax.TraceStaxClient;
+import com.tracestax.spring.TraceStaxAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -142,7 +142,7 @@ public class TraceStaxConfig {
 ### 2. Annotate job methods
 
 ```java
-import io.tracestax.spring.TraceStaxMonitor;
+import com.tracestax.spring.TraceStaxMonitor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -219,7 +219,7 @@ To see SDK debug output, configure your logging framework:
 
 ```xml
 <!-- Logback example -->
-<logger name="io.tracestax" level="DEBUG"/>
+<logger name="com.tracestax" level="DEBUG"/>
 ```
 
 ## License

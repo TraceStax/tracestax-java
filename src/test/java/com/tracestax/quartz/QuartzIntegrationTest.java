@@ -1,6 +1,6 @@
-package io.tracestax.quartz;
+package com.tracestax.quartz;
 
-import io.tracestax.TraceStaxClient;
+import com.tracestax.TraceStaxClient;
 import org.junit.jupiter.api.*;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;

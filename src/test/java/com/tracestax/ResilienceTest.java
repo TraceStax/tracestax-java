@@ -1,4 +1,4 @@
-package io.tracestax;
+package com.tracestax;
 
 import com.sun.net.httpserver.HttpServer;
 import org.junit.jupiter.api.*;

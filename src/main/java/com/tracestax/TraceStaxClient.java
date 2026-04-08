@@ -1,4 +1,4 @@
-package io.tracestax;
+package com.tracestax;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

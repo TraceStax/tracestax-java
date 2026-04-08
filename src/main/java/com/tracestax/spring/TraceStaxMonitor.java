@@ -1,4 +1,4 @@
-package io.tracestax.spring;
+package com.tracestax.spring;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
