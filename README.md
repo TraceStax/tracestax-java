@@ -40,7 +40,7 @@ client.shutdown();
 
 All HTTP calls are fire-and-forget: they run on a daemon background thread and never throw exceptions back to the caller.
 
-## Plain Java — Manual Tracking
+## Plain Java - Manual Tracking
 
 Use `TraceStaxClient` directly when you want full control over event timing.
 
@@ -152,7 +152,7 @@ public class ReportGenerator {
     @Scheduled(cron = "0 0 * * * *")
     @TraceStaxMonitor(jobClass = "com.example.ReportGenerator", queue = "reports")
     public void generateMonthlyReport() {
-        // business logic here — TraceStax events are sent automatically
+        // business logic here - TraceStax events are sent automatically
     }
 }
 ```
@@ -191,7 +191,7 @@ public class TraceStaxConfig {
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `apiKey` | `String` | — | **Required.** TraceStax API key. Use `TRACESTAX_API_KEY` env var by convention. |
+| `apiKey` | `String` | - | **Required.** TraceStax API key. Use `TRACESTAX_API_KEY` env var by convention. |
 | `endpoint` | `String` | `https://ingest.tracestax.com` | Base URL for the TraceStax ingest API. Override for self-hosted deployments or testing. |
 
 ## Authentication
