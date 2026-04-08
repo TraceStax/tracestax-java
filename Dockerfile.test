@@ -1,0 +1,11 @@
+FROM maven:3.9.14-amazoncorretto-25-alpine
+
+WORKDIR /sdk
+
+# Cache dependencies first
+COPY pom.xml .
+RUN mvn dependency:go-offline -q
+
+COPY src/ src/
+
+CMD ["mvn", "test", "-q"]
