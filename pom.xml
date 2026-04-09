@@ -119,6 +119,21 @@
         </dependency>
     </dependencies>
 
+    <scm>
+        <connection>scm:git:git://github.com/tracestax/tracestax-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com/tracestax/tracestax-java.git</developerConnection>
+        <url>https://github.com/tracestax/tracestax-java</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>tracestax</id>
+            <name>TraceStax</name>
+            <email>eng@tracestax.com</email>
+            <url>https://tracestax.com</url>
+        </developer>
+    </developers>
+
     <build>
         <plugins>
             <plugin>
