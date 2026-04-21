@@ -4,11 +4,11 @@ import com.tracestax.TraceStaxClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.BatchStatus;
-import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobExecutionListener;
+import org.springframework.batch.core.job.JobExecution;
+import org.springframework.batch.core.listener.JobExecutionListener;
 
 import java.time.Duration;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 /**
  * Spring Batch {@link JobExecutionListener} that automatically tracks job
@@ -57,7 +57,7 @@ public final class TraceStaxJobListener implements JobExecutionListener {
     public void beforeJob(final JobExecution jobExecution) {
         try {
             client.trackStart(
-                    jobExecution.getId().toString(),
+                    Long.toString(jobExecution.getId()),
                     jobExecution.getJobInstance().getJobName(),
                     "batch"
             );
@@ -75,18 +75,18 @@ public final class TraceStaxJobListener implements JobExecutionListener {
         try {
             final long duration = Duration.between(
                     jobExecution.getStartTime(),
-                    jobExecution.getEndTime() != null ? jobExecution.getEndTime() : Instant.now()
+                    jobExecution.getEndTime() != null ? jobExecution.getEndTime() : LocalDateTime.now()
             ).toMillis();
 
             if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
-                client.trackSuccess(jobExecution.getId().toString(), duration);
+                client.trackSuccess(Long.toString(jobExecution.getId()), duration);
             } else {
                 // Extract the first failure from step executions
                 final Throwable error = jobExecution.getAllFailureExceptions()
                         .stream()
                         .findFirst()
                         .orElse(null);
-                client.trackFailure(jobExecution.getId().toString(), duration, error);
+                client.trackFailure(Long.toString(jobExecution.getId()), duration, error);
             }
         } catch (Exception e) {
             LOG.debug("TraceStaxJobListener.afterJob: unexpected exception", e);

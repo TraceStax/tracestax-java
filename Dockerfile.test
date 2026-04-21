@@ -2,9 +2,9 @@ FROM maven:3.9.14-amazoncorretto-25-alpine
 
 WORKDIR /sdk
 
-# Cache dependencies first
+# Cache project deps and surefire plugin classpath so mvn test works offline
 COPY pom.xml .
-RUN mvn dependency:go-offline -q
+RUN mvn dependency:go-offline dependency:resolve-plugins -q
 
 COPY src/ src/
 
