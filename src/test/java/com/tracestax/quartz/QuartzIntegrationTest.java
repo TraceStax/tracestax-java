@@ -119,6 +119,8 @@ class QuartzIntegrationTest {
     // ── Helpers ──────────────────────────────────────────────────────────
 
     private boolean ingestAvailable() {
+        // Only run when TRACESTAX_INGEST_URL is explicitly set (i.e. docker-compose.test)
+        if (System.getenv("TRACESTAX_INGEST_URL") == null) return false;
         try {
             URL url = new URI(INGEST_URL + "/test/health").toURL();
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
